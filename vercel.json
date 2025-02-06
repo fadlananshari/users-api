@@ -14,7 +14,7 @@
   "env": {
     "APP_ENV": "production",
     "APP_DEBUG": "false",
-    "APP_URL": "https://yourproductionurl.com",
+    "APP_URL": "https://users-api-opal.vercel.app/",
     "APP_KEY": "base64:9nN2nzrhmC1sYoDJQd0tBACf1WgkKksjYdJ7AQERym8=",
     "APP_CONFIG_CACHE": "/tmp/config.php",
     "APP_EVENTS_CACHE": "/tmp/events.php",
