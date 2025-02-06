@@ -1,35 +1,15 @@
 {
   "version": 2,
-  "framework": null,
-  "function": {
-    "api/index.php" : { "runtime": "vercel-php@0.6.0" }
-  },
-  "routes": [
-    { "src": "/build/(.*)", "dest": "/public/build/" },
-    { "src": "/(.*)", "dest": "/api/index.php" }
+  "builds": [
+    {
+      "src": "public/index.php",
+      "use": "@vercel/php"
+    }
   ],
-  "public": true,
-  "buildCommand": "vite build",
-  "outputDirectory": "public",
-  "env": {
-    "APP_ENV": "production",
-    "APP_DEBUG": "false",
-    "APP_URL": "https://users-api-opal.vercel.app/",
-    "APP_KEY": "base64:9nN2nzrhmC1sYoDJQd0tBACf1WgkKksjYdJ7AQERym8=",
-    "APP_CONFIG_CACHE": "/tmp/config.php",
-    "APP_EVENTS_CACHE": "/tmp/events.php",
-    "APP_PACKAGES_CACHE": "/tmp/packages.php",
-    "APP_ROUTES_CACHE": "/tmp/routes.php",
-    "APP_SERVICES_CACHE": "/tmp/services.php",
-    "VIEW_COMPILED_PATH": "/tmp",
-    "CACHE_DRIVER": "array",
-    "LOG_CHANNEL": "stderr",
-    "SESSION_DRIVER": "cookie",
-    "DB_CONNECTION": "mysql",
-    "DB_HOST": "sql12.freesqldatabase.com",
-    "DB_PORT": "3306",
-    "DB_DATABASE": "sql12761444",
-    "DB_USERNAME": "sql12761444"
-  },
-  
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1"
+    }
+  ]
 }
