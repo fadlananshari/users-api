@@ -1,0 +1,309 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "User API Documentation",
+        "description": "Documentation for User API",
+        "contact": {
+            "name": "Muhamad Fadlan Anshari",
+            "email": "fadlananshari06@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/api",
+            "description": "Local API Server"
+        }
+    ],
+    "paths": {
+        "/api/pengguna": {
+            "get": {
+                "tags": [
+                    "Pengguna"
+                ],
+                "summary": "Menampilkan semua pengguna",
+                "description": "Mengambil semua data pengguna dari database.",
+                "operationId": "1a79c8d3e089450533b53577344a9eb3",
+                "responses": {
+                    "200": {
+                        "description": "Sukses mengambil data pengguna",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Pengguna"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Terjadi kesalahan saat mengambil data"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Pengguna"
+                ],
+                "summary": "Menyimpan pengguna baru",
+                "description": "Menyimpan data pengguna baru ke dalam database.",
+                "operationId": "54ac3c202374b5da0255b88649f6ba12",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "age"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john@example.com"
+                                    },
+                                    "age": {
+                                        "type": "integer",
+                                        "example": 25
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Pengguna berhasil disimpan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Pengguna"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validasi gagal"
+                    }
+                }
+            }
+        },
+        "/api/pengguna/{id}": {
+            "get": {
+                "tags": [
+                    "Pengguna"
+                ],
+                "summary": "Menampilkan pengguna berdasarkan ID",
+                "description": "Mengambil data pengguna berdasarkan ID.",
+                "operationId": "3ec1241f57a901812a55a7179c2ce6de",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID pengguna",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sukses mengambil data pengguna",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Pengguna"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Pengguna tidak ditemukan"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Pengguna"
+                ],
+                "summary": "Memperbarui data pengguna",
+                "description": "Memperbarui data pengguna berdasarkan ID.",
+                "operationId": "7e0d66934e20128886a600f588cf0149",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID pengguna",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "age"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Jane Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "jane@example.com"
+                                    },
+                                    "age": {
+                                        "type": "integer",
+                                        "example": 30
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pengguna berhasil diperbarui",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Pengguna"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Pengguna tidak ditemukan"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Pengguna"
+                ],
+                "summary": "Menghapus pengguna",
+                "description": "Menghapus data pengguna berdasarkan ID.",
+                "operationId": "2d55bd7cff10bc4b81f32d73e7defb2a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID pengguna",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pengguna berhasil dihapus",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User deleted"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Pengguna tidak ditemukan"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Pengguna": {
+                "properties": {
+                    "id": {
+                        "description": "ID pengguna",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Nama pengguna",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "Email pengguna",
+                        "type": "string"
+                    },
+                    "age": {
+                        "description": "Umur pengguna",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Pengguna",
+            "description": "Pengguna"
+        }
+    ]
+}
